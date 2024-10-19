@@ -16,7 +16,8 @@ class PriceMachine():
         self.data = []
         self.result = []
 
-    def load_prices(self, file_path='.'):
+    def load_prices(self, file_path='.'):  
+        # - file_path (str): путь к каталогу, где находятся файлы (по умолчанию текущий каталог).
         """
         Загружает данные из CSV-файлов, содержащих информацию о товарах, ценах и весе.
 
@@ -31,8 +32,8 @@ class PriceMachine():
         Если строка содержит ошибки в формате данных, она также пропускается.
         Данные сортируются по цене за килограмм.
 
-        Параметры:
-        - file_path (str): путь к каталогу, где находятся файлы (по умолчанию текущий каталог).
+       
+        
         """
         files = [file_name for file_name in os.listdir(file_path) if "price" in file_name]
         if not files:
@@ -56,7 +57,7 @@ class PriceMachine():
 
                 # файл без нужных столбцов - пропускается
                 if len(headers) != 4:
-                    print(f"WARNING: пропуск файла '{file_name}' не верные данные "
+                    print(f"ВНИМАНИЕ: пропуск файла '{file_name}' не верные данные "
                           f"имен заголовков: {reader.fieldnames}")
                     continue
 
@@ -74,7 +75,7 @@ class PriceMachine():
                         row_d['price_for_kg'] = round(float(row_d['price']) / float(row_d['weight']), 2)  # цена за кг
                     except ValueError as ex:
                         # строка с ошибкой - пропускается
-                        print(f"WARNING: строка пропущена из-за ошибки формата, файл '{file_name}', "
+                        print(f"ВНИМАНИЕ: строка пропущена из-за ошибки формата, файл '{file_name}', "
                               f"строка {count}, данные: price = {row_d['price']}, weight = {row_d['weight']}.")
                         continue
                     self.data.append(row_d)
