@@ -105,8 +105,9 @@ class PriceMachine():
         """
         result = """
         <!DOCTYPE html>
-        <html>
+        <html lang='ru'>
         <head>
+            <meta charset='UTF-8'>
             <title>Позиции продуктов</title>
         </head>
         <body>
